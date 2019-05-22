@@ -9,7 +9,7 @@
       { 3, 2       } 
 */
 #include <stdio.h>
-#define BITS sizeof(int) * 8
+#define BITS sizeof(short) * 8
 
 void print_set(unsigned int binary)
 {
@@ -35,9 +35,49 @@ void print_set(unsigned int binary)
     printf("}");
 }
 
+short set_intersetion(unsigned short x, unsigned short y)
+{
+    return x & y;
+}
+
+short set_union(unsigned short x, unsigned short y)
+{
+    return x | y;
+}
+
+short set_sym_diff(unsigned short x, unsigned short y)
+{
+    return x ^ y;
+}
+
+short set_complement(unsigned short x)
+{
+    return ~x;
+}
+
 int main(void)
 {
-    unsigned int x = 0x1 << 31 | 0x1 << 2;
+    unsigned short x = 0x1 << 6 | 0x1 << 5 | 0x1 << 3 | 0x1 << 0;
+    unsigned short y = 0x1 << 6 | 0x1 << 4 | 0x1 << 2 | 0x1 << 0;
+
+    printf("We have the following sets:\n1. ");
     print_set(x);
+    printf("\n2. ");
+    print_set(y);
+
+    printf("\nSet intersection is - ");
+    print_set(set_intersetion(x, y));
+
+    printf("\nSet union is - ");
+    print_set(set_union(x, y));
+
+    printf("\nSymmetric difference is - ");
+    print_set(set_sym_diff(x, y));
+
+    printf("\n1's complement is - ");
+    print_set(set_complement(x));
+    printf("\n2's complement is - ");
+    print_set(set_complement(y));
+
     printf("\n");
 }
