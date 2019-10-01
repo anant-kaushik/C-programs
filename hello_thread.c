@@ -1,3 +1,7 @@
+/*
+ * Creates a simple thread that uses no arguments and just prints "hello world"
+ */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,7 +10,7 @@ void *thread(void *vagrs);
 void Pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);
 void Pthread_join(pthread_t thread, void **value_ptr);
 
-int main()
+int main() /* main thread */
 {
     pthread_t tid;
     Pthread_create(&tid, NULL, thread, NULL);
@@ -14,7 +18,7 @@ int main()
     exit(0);
 }
 
-void *thread(void *vargs)
+void *thread(void *vargs) /* thread routine */
 {
     printf("Hello, world!\n");
     return NULL;
